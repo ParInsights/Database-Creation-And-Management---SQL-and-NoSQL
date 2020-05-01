@@ -16,3 +16,6 @@ We looked at the following topics:
 10. Creating and Designing User Interface. 
 
 The Final Project was a project completed for a friend who owned a few local bars and concert venues. He was looking to create a database where he would be able to book local musicians, sell merchansise, manage inventory, and review sales for his various venues. 
+
+
+
