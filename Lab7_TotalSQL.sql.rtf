@@ -1,0 +1,158 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue255;\red128\green128\blue128;\red0\green128\blue0;
+\red255\green0\blue255;\red255\green0\blue0;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c50196\c50196\c50196;\csgenericrgb\c0\c50196\c0;
+\csgenericrgb\c100000\c0\c100000;\csgenericrgb\c100000\c0\c0;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri-720\partightenfactor0
+
+\f0\fs19 \cf2 SELECT\cf0  \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+	\cf3 ,\cf0  vc_VidCast\cf3 .\cf0 vc_VidCastID\
+\cf2 FROM\cf0  vc_VidCast\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 JOIN\cf0  vc_User \cf2 ON\cf0  vc_User\cf3 .\cf0 vc_UserID \cf3 =\cf0  vc_VidCast\cf3 .\cf0 vc_UserID\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 ORDER\cf0  \cf2 BY\cf0  vc_User\cf3 .\cf0 UserName\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 --Look for users who have not yet made any VidCasts \cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 SELECT\cf0  \cf3 *\cf0  \cf2 FROM\cf0  vc_User\
+\cf2 WHERE\cf0  vc_UserID \cf3 NOT\cf0  \cf3 IN\cf2  \cf3 (\cf2 SELECT\cf0  vc_UserID \cf2 FROM\cf0  vc_Vidcast\cf3 )\cf0 \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 --Be sure to include all vc_User records \cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 SELECT\cf0  \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_user\cf3 .\cf0 EmailAddress\
+	\cf3 ,\cf0  vc_VidCast\cf3 .\cf0 vc_VidCastID\
+\cf2 FROM\cf0  vc_VidCast\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 RIGHT\cf0  \cf3 JOIN\cf0  vc_User \cf2 ON\cf0  vc_User\cf3 .\cf0 vc_UserID \cf3 =\cf0  vc_VidCast\cf3 .\cf0 vc_UserID\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 ORDER\cf0  \cf2 BY\cf0  vc_User\cf3 .\cf0 UserName\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 --High-level descriptive statistics for vc_Vidcast\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 SELECT\cf0  \
+	\cf5 COUNT\cf2  \cf3 (\cf0 vc_VidcastID\cf3 )\cf0  \cf2 as\cf0  NumberOfVidCasts\
+	\cf3 ,\cf0  \cf5 SUM\cf3 (\cf0 ScheduleDurationMinutes\cf3 )\cf0  \cf2 as\cf0  TotalScheduledMinutes\
+	\cf3 ,\cf0  \cf5 MIN\cf3 (\cf0 ScheduleDurationMinutes\cf3 )\cf0  \cf2 as\cf0  MinScheduledMinutes\
+	\cf3 ,\cf0  \cf5 AVG\cf3 (\cf0 ScheduleDurationMinutes\cf3 )\cf0  \cf2 as\cf0  AvgScheduledMinutes\
+	\cf3 ,\cf0  \cf5 MAX\cf3 (\cf0 ScheduleDurationMinutes\cf3 )\cf0  \cf2 as\cf0  MaxScheduledMinutes\
+\cf2 FROM\cf0  vc_VidCast \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 --GROUP BY Clause, Repea\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 SELECT\cf0 \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+	\cf3 ,\cf0  \cf5 COUNT\cf3 (\cf0 vc_VidCast\cf3 .\cf0 vc_VidCastID\cf3 )\cf0  CountOfVidCasts\
+\cf2 FROM\cf0  vc_VidCast\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 RIGHT\cf0  \cf3 JOIN\cf0  vc_User \cf2 ON\cf0  vc_User\cf3 .\cf0 vc_UserID \cf3 =\cf0  vc_VidCast\cf3 .\cf0 vc_UserID\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 ORDER\cf0  \cf2 BY\cf0  vc_User\cf3 .\cf0 UserName\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 --Group By Error Amended Query \cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 SELECT\cf0  \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+	\cf3 ,\cf0  \cf5 COUNT\cf3 (\cf0 vc_VidCast\cf3 .\cf0 vc_VidCastID\cf3 )\cf0  CountOfVidCasts\
+\cf2 FROM\cf0  vc_VidCast\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 RIGHT\cf0  \cf3 JOIN\cf0  vc_User \cf2 ON\cf0  vc_User\cf3 .\cf0 vc_UserID \cf3 =\cf0  vc_VidCast\cf3 .\cf0 vc_UserID\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 GROUP\cf0  \cf2 BY\cf0  \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+\cf2 ORDER\cf0  \cf2 BY\cf0  vc_User\cf3 .\cf0 UserName\
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 --Amended previous query, Amended line 50 so users with highest count at top. \cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 SELECT\cf0 \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+	\cf3 ,\cf0  \cf5 COUNT\cf3 (\cf0 vc_VidCast\cf3 .\cf0 vc_VidCastID\cf3 )\cf0  CountOfVidCasts\
+\cf2 FROM\cf0  vc_VidCast\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 RIGHT\cf0  \cf3 JOIN\cf0  vc_User \cf2 ON\cf0  vc_User\cf3 .\cf0 vc_UserID \cf3 =\cf0  vc_VidCast\cf3 .\cf0 vc_UserID\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 GROUP\cf0  \cf2 BY\cf0 \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+\cf2 ORDER\cf0  \cf2 BY\cf0  CountOfVidCasts \cf2 DESC\cf3 ,\cf0  vc_User\cf3 .\cf0 UserName\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 --Our least prolific users:\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 SELECT\cf0  \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+	\cf3 ,\cf0  \cf5 COUNT\cf3 (\cf0 vc_VidCast\cf3 .\cf0 vc_VidCastID\cf3 )\cf0  CountOfVidCasts\
+\cf2 FROM\cf0  vc_VidCast\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 RIGHT\cf0  \cf3 JOIN\cf0  vc_User \cf2 ON\cf0  vc_User\cf3 .\cf0 vc_UserID \cf3 =\cf0  vc_VidCast\cf3 .\cf0 vc_UserID\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 GROUP\cf0  \cf2 BY\cf0  \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+\cf2 HAVING\cf0  \cf5 COUNT\cf3 (\cf0 vc_VidCast\cf3 .\cf0 vc_VidCastID\cf3 )\cf0  \cf3 <\cf0  10\
+\cf2 ORDER\cf0  \cf2 BY\cf0  CountOfVidCasts \cf2 DESC\cf3 ,\cf0  vc_User\cf3 .\cf0 UserName\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 --Number of min b/w StartDateTime and EndDateTime for all VidCasts with Finished Status \cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 SELECT\cf0 \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+	\cf3 ,\cf0  \cf5 SUM\cf3 (\cf5 DateDiff\cf3 (\cf0 n\cf3 ,\cf0  StartDateTime\cf3 ,\cf0  EndDateTime\cf3 ))\cf0  \cf2 as\cf0  SumActualDurationMinutes\
+\cf2 FROM\cf0  vc_VidCast\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 JOIN\cf0  vc_User \cf2 ON\cf0  vc_User\cf3 .\cf0 vc_UserID \cf3 =\cf0  vc_VidCast\cf3 .\cf0 vc_UserID\
+\cf3 JOIN\cf0  vc_Status \cf2 on\cf0  vc_Status\cf3 .\cf0 vc_StatusID \cf3 =\cf0  vc_VidCast\cf3 .\cf0 vc_StatusID\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 WHERE\cf0  vc_Status\cf3 .\cf0 StatusText \cf3 =\cf0  \cf6 'Finished'\cf0 \
+\cf2 GROUP\cf0  \cf2 BY\cf0 \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+\cf2 ORDER\cf0  \cf2 BY\cf0  vc_User\cf3 .\cf0 UserName\
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 --Part 2: Adding descriptive stats to above query \cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 SELECT\cf0 \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+	\cf3 ,\cf0  \cf5 SUM\cf3 (\cf5 DateDiff\cf3 (\cf0 n\cf3 ,\cf0  StartDateTime\cf3 ,\cf0  EndDateTime\cf3 ))\cf0  \cf2 as\cf0  SumActualDurationMinutes\
+	\cf3 ,\cf0  \cf5 COUNT\cf3 (\cf0 vc_VidCastID\cf3 )\cf0  \cf2 as\cf0  CountOfVidCasts\
+	\cf3 ,\cf0  \cf5 MIN\cf3 (\cf0 ScheduleDurationMinutes\cf3 )\cf0  \cf2 as\cf0  MinActualMinutes\
+	\cf3 ,\cf0  \cf5 AVG\cf3 (\cf0 ScheduleDurationMinutes\cf3 )\cf0  \cf2 as\cf0  AvgActualMinutes\
+	\cf3 ,\cf0  \cf5 MAX\cf3 (\cf0 ScheduleDurationMinutes\cf3 )\cf0  \cf2 as\cf0  MaxActualMinutes \
+\cf2 FROM\cf0  vc_VidCast\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 JOIN\cf0  vc_User \cf2 ON\cf0  vc_User\cf3 .\cf0 vc_UserID \cf3 =\cf0  vc_VidCast\cf3 .\cf0 vc_UserID\
+\cf3 JOIN\cf0  vc_Status \cf2 on\cf0  vc_Status\cf3 .\cf0 vc_StatusID \cf3 =\cf0  vc_VidCast\cf3 .\cf0 vc_StatusID\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 WHERE\cf0  vc_Status\cf3 .\cf0 StatusText \cf3 =\cf0  \cf6 'Finished'\cf0 \
+\cf2 GROUP\cf0  \cf2 BY\cf0 \
+	vc_User\cf3 .\cf0 UserName\
+	\cf3 ,\cf0  vc_User\cf3 .\cf0 EmailAddress\
+\cf2 ORDER\cf0  \cf2 BY\cf0  CountOfVidCasts \cf2 DESC\cf0 \
+\pard\pardeftab720\ri-720\sl259\slmult1\sa160\partightenfactor0
+\cf0 	\cf3 ,\cf0  vc_User\cf3 .\cf0 UserName\cf2  \cf3 ;
+\f1\fs22 \cf0 \
+\
+}

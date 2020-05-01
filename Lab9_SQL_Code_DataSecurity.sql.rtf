@@ -1,0 +1,78 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\froman\fcharset0 Times-Roman;}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;\red255\green255\blue255;}
+{\*\expandedcolortbl;;\cssrgb\c0\c0\c0;\cssrgb\c100000\c100000\c100000;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl300\sa240\partightenfactor0
+
+\f0\fs26\fsmilli13333 \cf2 \cb3 \expnd0\expndtw0\kerning0
+-- Creating a guest user for database user CREATE USER guestuser FOR LOGIN guestuser 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 SELECT * FROM vc_User\cb1 \uc0\u8232 \cb3 -- revoke select permissions! 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 REVOKE SELECT ON vc_User to guestuser 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 --Grant read permission on the user table\cb1 \uc0\u8232 \cb3 GRANT SELECT ON vc_MostProlificUsers to guestuser 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 -- allow guestuser to run some stored procedures GRANT EXECUTE ON vc_AddUserLogin TO guestuser 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 GRANT EXECUTE ON vc_FinishVidCast TO guestuser SELECT * FROM vc_UserLogin 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 -- finding info about this clearly revolutionary vidcast\cb1 \uc0\u8232 \cb3 SELECT * FROM vc_VidCast WHERE VidCastTitle LIKE 'Rock Your Way To Success' 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 REVOKE EXECUTE ON vc_AddUserLogin to guestuser REVOKE EXECUTE ON vc_FinishVidCast to guestuser 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 -- Creating a new table CREATE TABLE lab_Test ( 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 lab_TestID int identity primary key, lab_testText varchar(20) unique not null 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 ) 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 CREATE TABLE lab_Log (\cb1 \uc0\u8232 \cb3 lab_LogID int identity primary key, lab_logInt int unique not null 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 ) 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 INSERT INTO lab_Test (lab_testText) VALUES ('One'), ('Two'), ('Three') INSERT INTO lab_log (lab_logInt) SELECT lab_TestID FROM lab_Test 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 --STEP 1 BEGIN TRANSACTION BEGIN TRANSACTION 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 -- STEP 2 ASSESS\cb1 \uc0\u8232 \cb3 DECLARE @rc int\cb1 \uc0\u8232 \cb3 SET @rc = @@ROWCOUNT -- Initially 0 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 -- STEP 3 MAKE CHANGE\cb1 \uc0\u8232 \cb3 INSERT INTO lab_Test (lab_testText) VALUES (\'91Patel\'92) 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 -- STEP 4 CHECK STATE OF THINGS\cb1 \uc0\u8232 \cb3 IF(@rc = @@ROWCOUNT) -- if @@ROWCOUNT was not changed, fail BEGIN 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 -- STEP 5 -- if failed SELECT 'Bail out! It Failed!' ROLLBACK 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 END\cb1 \uc0\u8232 \cb3 ELSE -- Success! Continue. BEGIN\cb1 \uc0\u8232 \cb3 -- Step 5 if succeeded 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 SELECT 'YAY! It worked!'\cb1 \uc0\u8232 \cb3 INSERT INTO lab_Log (lab_logInt) VALUES (@@identity) COMMIT 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 END 
+\f1\fs24 \cb1 \
+
+\f0\fs26\fsmilli13333 \cb3 SELECT * FROM lab_Log SELECT * FROM lab_Test 
+\f1\fs24 \cb1 \
+}

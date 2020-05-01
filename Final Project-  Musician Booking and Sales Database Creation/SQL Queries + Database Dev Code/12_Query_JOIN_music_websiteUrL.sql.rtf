@@ -1,0 +1,23 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green128\blue0;\red0\green0\blue255;\red128\green128\blue128;
+}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c50196\c0;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c50196\c50196\c50196;
+}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f0\fs19 \cf2 -- Using JOIN. What are the products with muscian information and website URL \cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 SELECT\cf0  website_table\cf4 .\cf0 Browser_URL\cf4 ,\cf0  FirstName\cf4 ,\cf0  LastName\cf4 ,\cf0  productname\cf4 ,\cf0  pub_name\cf4 ,\cf0 pub_date\cf4 ,\cf0 musicname\
+\cf3 FROM \cf4 (((\cf0 website_table  \
+	\cf4 INNER\cf0  \cf4 JOIN\cf0  artist \cf3 on\cf0  website_table\cf4 .\cf0 artistID\cf4 =\cf0 artist\cf4 .\cf0 artistID\cf4 )\cf0 \
+	\cf4 INNER\cf0  \cf4 JOIN\cf0  product \cf3 on\cf0  product\cf4 .\cf0 browser_url\cf4 =\cf0 website_table\cf4 .\cf0 browser_url\cf4 )\cf0 \
+	\cf4 INNER\cf0  \cf4 JOIN\cf0  musicsales \cf3 on\cf0  musicsales\cf4 .\cf0 artistID\cf4 =\cf0 website_table\cf4 .\cf0 artistID\cf4 )\cf0 \
+\pard\pardeftab720\ri0\sl259\slmult1\sa160\partightenfactor0
+\cf0 	\cf4 INNER\cf0  \cf4 JOIN\cf0  musictitles \cf3 on\cf0  musictitles\cf4 .\cf0 titleID\cf4 =\cf0 musicsales\cf4 .\cf0 titleID\cf4 ;\
+\
+\
+}

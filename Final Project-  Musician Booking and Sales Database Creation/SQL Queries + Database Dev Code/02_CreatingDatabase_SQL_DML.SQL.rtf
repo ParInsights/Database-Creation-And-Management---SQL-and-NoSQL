@@ -1,0 +1,282 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\froman\fcharset0 TimesNewRomanPSMT;}
+{\colortbl;\red255\green255\blue255;\red0\green128\blue0;\red0\green0\blue255;\red128\green128\blue128;
+\red255\green0\blue0;\red255\green0\blue255;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c50196\c0;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c50196\c50196\c50196;
+\csgenericrgb\c100000\c0\c0;\csgenericrgb\c100000\c0\c100000;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f0\fs19 \cf2 --Alter performances table column name (due to error in initital entry/execution)\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 alter\cf0  \cf3 table\cf0  dbo\cf4 .\cf0 Performances\
+\pard\pardeftab720\ri0\sl259\slmult1\sa160\partightenfactor0
+\cf0 	\cf3 ADD\cf0  \cf3 TYPE\cf0  \cf3 varchar\cf4 (\cf0 20\cf4 );
+\f1\fs22 \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f0\fs19 \cf2 --Insert data---\cf0 \
+\
+\cf2 --insert data into Artist table--\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 insert\cf0  \cf3 into\cf0  artist\cf3  \cf4 (\cf0 FirstName\cf4 ,\cf0 LastName\cf4 ,\cf0 Genre\cf4 ,\cf0 Label\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Billy'\cf4 ,\cf5 'Power'\cf4 ,\cf5 'Punk'\cf4 ,\cf5 'Tooth & Nail Records'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  artist\cf3  \cf4 (\cf0 FirstName\cf4 ,\cf0 LastName\cf4 ,\cf0 Genre\cf4 ,\cf0 Label\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Ed'\cf4 ,\cf5 'Power'\cf4 ,\cf5 'Punk'\cf4 ,\cf5 'Tooth & Nail Records'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  artist\cf3  \cf4 (\cf0 FirstName\cf4 ,\cf0 LastName\cf4 ,\cf0 Genre\cf4 ,\cf0 Label\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Stephen'\cf4 ,\cf5 'Keech'\cf4 ,\cf5 'Metalcore'\cf4 ,\cf5 'Solid State'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  artist\cf3  \cf4 (\cf0 FirstName\cf4 ,\cf0 LastName\cf4 ,\cf0 Genre\cf4 ,\cf0 Label\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Jimmy'\cf4 ,\cf5 'Ryan'\cf4 ,\cf5 'Christian metal'\cf4 ,\cf5 'Solid State'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  artist\cf3  \cf4 (\cf0 FirstName\cf4 ,\cf0 LastName\cf4 ,\cf0 Genre\cf4 ,\cf0 Label\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Nicholas'\cf4 ,\cf5 'Moore'\cf4 ,\cf5 'Post-hardcore'\cf4 ,\cf5 'InVogue'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  artist\cf3  \cf4 (\cf0 FirstName\cf4 ,\cf0 LastName\cf4 ,\cf0 Genre\cf4 ,\cf0 Label\cf4 )\cf0  \cf3 values\cf4 (\cf5 'Anthony'\cf4 ,\cf5 'Damschroder'\cf4 ,\cf5 'Alternative metal'\cf4 ,\cf5 'Rise'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  artist\cf3  \cf4 (\cf0 FirstName\cf4 ,\cf0 LastName\cf4 ,\cf0 Genre\cf4 ,\cf0 Label\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Larry'\cf4 ,\cf5 'Farkas'\cf4 ,\cf5 'Christian metal'\cf4 ,\cf5 'Vengeance Rising'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  artist\cf3  \cf4 (\cf0 FirstName\cf4 ,\cf0 LastName\cf4 ,\cf0 Genre\cf4 ,\cf0 Label\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Eli'\cf4 ,\cf5 'Prinsen'\cf4 ,\cf5 'Christian metal'\cf4 ,\cf5 'Intense'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  artist\cf3  \cf4 (\cf0 FirstName\cf4 ,\cf0 LastName\cf4 ,\cf0 Genre\cf4 ,\cf0 Label\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Bruce'\cf4 ,\cf5 'Swift'\cf4 ,\cf5 'heavy metal'\cf4 ,\cf5 'Intense'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  artist\cf3  \cf4 (\cf0 FirstName\cf4 ,\cf0 LastName\cf4 ,\cf0 Genre\cf4 ,\cf0 Label\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Gleen'\cf4 ,\cf5 'Mancaruso'\cf4 ,\cf5 'christian rock'\cf4 ,\cf5 'Joshua'\cf4 );\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --query check on artist table-- \cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 select\cf0  \cf4 *\cf0  \cf3 from\cf0  artist\cf4 ;\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --Insert into website table \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 insert\cf0  \cf3 into\cf0  website_table\cf4 (\cf0 Browser_URL\cf4 ,\cf0 PageBanner\cf4 ,\cf0 Contact_Num\cf4 ,\cf0 ArtistBio\cf4 ,\cf0 ArtistImg\cf4 ,\cf0 ArtistID\cf4 )\cf0  \cf3 values\cf0  \
+\cf3 	\cf4 (\cf5 'http://www.mymusics.com/billypower'\cf4 ,\cf5 'ToothNail Banner'\cf4 ,\cf5 '9123412345'\cf4 ,\cf5 'He is member of Blenderhead band'\cf4 ,\cf5 'billy.jpg'\cf4 ,\cf5 '2'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  website_table\cf4 (\cf0 Browser_URL\cf4 ,\cf0 PageBanner\cf4 ,\cf0 Contact_Num\cf4 ,\cf0 ArtistBio\cf4 ,\cf0 ArtistImg\cf4 ,\cf0 ArtistID\cf4 )\cf0  \cf3 values\cf0  \
+\cf3 	\cf4 (\cf5 'http://www.mymusics.com/edcari'\cf4 ,\cf5 'ToothNail Banner'\cf4 ,\cf5 '7208912345'\cf4 ,\cf5 'He is guitar player of Blenderhead band'\cf4 ,\cf5 'edi.jpg'\cf4 ,\cf5 '3'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  website_table\cf4 (\cf0 Browser_URL\cf4 ,\cf0 PageBanner\cf4 ,\cf0 Contact_Num\cf4 ,\cf0 ArtistBio\cf4 ,\cf0 ArtistImg\cf4 ,\cf0 ArtistID\cf4 )\cf0  \cf3 values\cf0  \
+\cf3 	\cf4 (\cf5 'http://www.mymusics.com/stephen'\cf4 ,\cf5 'SolidState Banner'\cf4 ,\cf5 '7123412345'\cf4 ,\cf5 'He is member of HASTE THE DAY'\cf4 ,\cf5 'stephen.jpg'\cf4 ,\cf5 '4'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  website_table\cf4 (\cf0 Browser_URL\cf4 ,\cf0 PageBanner\cf4 ,\cf0 Contact_Num\cf4 ,\cf0 ArtistBio\cf4 ,\cf0 ArtistImg\cf4 ,\cf0 ArtistID\cf4 )\cf0  \cf3 values\cf0  \
+\cf3 	\cf4 (\cf5 'http://www.mymusics.com/jimmy'\cf4 ,\cf5 'SolidState Banner'\cf4 ,\cf5 '9468372567'\cf4 ,\cf5 'He is member of HASTE THE DAY'\cf4 ,\cf5 'jimmy.jpg'\cf4 ,\cf5 '5'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  website_table\cf4 (\cf0 Browser_URL\cf4 ,\cf0 PageBanner\cf4 ,\cf0 Contact_Num\cf4 ,\cf0 ArtistBio\cf4 ,\cf0 ArtistImg\cf4 ,\cf0 ArtistID\cf4 )\cf0  \cf3 values\cf0  \
+\cf3 	\cf4 (\cf5 'www.facebook.com/beforetheireyesband'\cf4 ,\cf5 'Before there Eyes Banner'\cf4 ,\cf5 '9198972567'\cf4 ,\cf5 'He is member of Before there eyes post hardcore band'\cf4 ,\cf5 'moore.jpg'\cf4 ,\cf5 '6'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  website_table\cf4 (\cf0 Browser_URL\cf4 ,\cf0 PageBanner\cf4 ,\cf0 Contact_Num\cf4 ,\cf0 ArtistBio\cf4 ,\cf0 ArtistImg\cf4 ,\cf0 ArtistID\cf4 )\cf0  \cf3 values\cf0  \
+\cf3 	\cf4 (\cf5 'http://www.mymusics.com/anthony'\cf4 ,\cf5 'Eyes Banner'\cf4 ,\cf5 '7298972567'\cf4 ,\cf5 'He is member of Before there eyes post hardcore band'\cf4 ,\cf5 'anthony.jpg'\cf4 ,\cf5 '7'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  website_table\cf4 (\cf0 Browser_URL\cf4 ,\cf0 PageBanner\cf4 ,\cf0 Contact_Num\cf4 ,\cf0 ArtistBio\cf4 ,\cf0 ArtistImg\cf4 ,\cf0 ArtistID\cf4 )\cf0  \cf3 values\cf0  \
+\cf3 	\cf4 (\cf5 'http://www.mymusics.com/larry'\cf4 ,\cf5 'DieBanner'\cf4 ,\cf5 '7298971234'\cf4 ,\cf5 'He is member of Die happy band'\cf4 ,\cf5 'larry.jpg'\cf4 ,\cf5 '8'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  website_table\cf4 (\cf0 Browser_URL\cf4 ,\cf0 PageBanner\cf4 ,\cf0 Contact_Num\cf4 ,\cf0 ArtistBio\cf4 ,\cf0 ArtistImg\cf4 ,\cf0 ArtistID\cf4 )\cf0  \cf3 values\cf0  \
+\cf3 	\cf4 (\cf5 'http://www.mymusics.com/eli'\cf4 ,\cf5 'sacredWarriorBanner'\cf4 ,\cf5 '9256781234'\cf4 ,\cf5 'He is member of Sacred Warrior band'\cf4 ,\cf5 'eli.jpg'\cf4 ,\cf5 '9'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  website_table\cf4 (\cf0 Browser_URL\cf4 ,\cf0 PageBanner\cf4 ,\cf0 Contact_Num\cf4 ,\cf0 ArtistBio\cf4 ,\cf0 ArtistImg\cf4 ,\cf0 ArtistID\cf4 )\cf0  \cf3 values\cf0  \
+\cf3 	\cf4 (\cf5 'http://www.mymusics.com/bruce'\cf4 ,\cf5 'sacredWarriorBanner'\cf4 ,\cf5 '5676781234'\cf4 ,\cf5 'He is member of Sacred Warrior band'\cf4 ,\cf5 'bruce.jpg'\cf4 ,\cf5 '10'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  website_table\cf4 (\cf0 Browser_URL\cf4 ,\cf0 PageBanner\cf4 ,\cf0 Contact_Num\cf4 ,\cf0 ArtistBio\cf4 ,\cf0 ArtistImg\cf4 ,\cf0 ArtistID\cf4 )\cf0  \cf3 values\cf0  \
+\cf3 	\cf4 (\cf5 'http://www.mymusics.com/gleen'\cf4 ,\cf5 'DieBanner'\cf4 ,\cf5 '7256781234'\cf4 ,\cf5 'He is member of Die happy band'\cf4 ,\cf5 'gleen.jpg'\cf4 ,\cf5 '1'\cf4 );\cf0 \
+\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --query the website table \cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 select\cf0  \cf4 *\cf0  \cf3 from\cf0  website_table\
+\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --Insert data into Product table \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 insert\cf0  \cf3 into\cf0  Product\cf4 (\cf0 ProductName\cf4 ,\cf0 ProductPrice\cf4 ,\cf0 Units\cf4 ,\cf0 Browser_URL\cf4 )\cf0  \cf3 values \cf4 (\cf5 'T-Shirt'\cf4 ,\cf5 '50'\cf4 ,\cf5 '10'\cf4 ,\cf5 'http://www.mymusics.com/stephen'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Product\cf4 (\cf0 ProductName\cf4 ,\cf0 ProductPrice\cf4 ,\cf0 Units\cf4 ,\cf0 Browser_URL\cf4 )\cf0  \cf3 values \cf4 (\cf5 'T-Shirt'\cf4 ,\cf5 '350'\cf4 ,\cf5 '5'\cf4 ,\cf5 'http://www.mymusics.com/larry'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Product\cf4 (\cf0 ProductName\cf4 ,\cf0 ProductPrice\cf4 ,\cf0 Units\cf4 ,\cf0 Browser_URL\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Headband'\cf4 ,\cf5 '100'\cf4 ,\cf5 '15'\cf4 ,\cf5 'http://www.mymusics.com/larry'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Product\cf4 (\cf0 ProductName\cf4 ,\cf0 ProductPrice\cf4 ,\cf0 Units\cf4 ,\cf0 Browser_URL\cf4 )\cf3 values \cf4 (\cf5 'Headband'\cf4 ,\cf5 '150'\cf4 ,\cf5 '10'\cf4 ,\cf5 'http://www.mymusics.com/billypower'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Product\cf4 (\cf0 ProductName\cf4 ,\cf0 ProductPrice\cf4 ,\cf0 Units\cf4 ,\cf0 Browser_URL\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Poster'\cf4 ,\cf5 '25'\cf4 ,\cf5 '100'\cf4 ,\cf5 'http://www.mymusics.com/billypower'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Product\cf4 (\cf0 ProductName\cf4 ,\cf0 ProductPrice\cf4 ,\cf0 Units\cf4 ,\cf0 Browser_URL\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Poster'\cf4 ,\cf5 '10'\cf4 ,\cf5 '1000'\cf4 ,\cf5 'http://www.mymusics.com/gleen'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Product\cf4 (\cf0 ProductName\cf4 ,\cf0 ProductPrice\cf4 ,\cf0 Units\cf4 ,\cf0 Browser_URL\cf4 )\cf3 values \cf4 (\cf5 'Headband'\cf4 ,\cf5 '50'\cf4 ,\cf5 '100'\cf4 ,\cf5 'http://www.mymusics.com/gleen'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Product\cf4 (\cf0 ProductName\cf4 ,\cf0 ProductPrice\cf4 ,\cf0 Units\cf4 ,\cf0 Browser_URL\cf4 )\cf0  \cf3 values \cf4 (\cf5 'T-Shirt'\cf4 ,\cf5 '200'\cf4 ,\cf5 '10'\cf4 ,\cf5 'http://www.mymusics.com/gleen'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Product\cf4 (\cf0 ProductName\cf4 ,\cf0 ProductPrice\cf4 ,\cf0 Units\cf4 ,\cf0 Browser_URL\cf4 )\cf0  \cf3 values \cf4 (\cf5 'T-Shirt'\cf4 ,\cf5 '250'\cf4 ,\cf5 '100'\cf4 ,\cf5 'http://www.mymusics.com/anthony'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Product\cf4 (\cf0 ProductName\cf4 ,\cf0 ProductPrice\cf4 ,\cf0 Units\cf4 ,\cf0 Browser_URL\cf4 )\cf0  \cf3 values \cf4 (\cf5 'T-Shirt'\cf4 ,\cf5 '50'\cf4 ,\cf5 '100'\cf4 ,\cf5 'http://www.mymusics.com/eli'\cf4 );\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --query product table \cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 select\cf0  \cf4 *\cf0  \cf3 from\cf0  Product\
+\pard\pardeftab720\ri0\sl259\slmult1\sa160\partightenfactor0
+
+\f1\fs22 \cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f0\fs19 \cf2 --Insert data into performances table \cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 insert\cf0  \cf3 into\cf0  Performances\cf4 (\cf3 TYPE\cf4 ,\cf0 ArtistID\cf4 ,\cf3 Name\cf4 ,\cf3 Location\cf4 ,\cf0 Price\cf4 ,\cf0 Rules\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Vocals'\cf4 ,\cf5 '2'\cf4 ,\cf5 'Ninety Pound Wuss'\cf4 ,\cf5 'America'\cf4 ,\cf5 '100'\cf4 ,\cf5 'Enjoy Tooth and Nail songs by Billy'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Performances\cf4 (\cf3 TYPE\cf4 ,\cf0 ArtistID\cf4 ,\cf3 Name\cf4 ,\cf3 Location\cf4 ,\cf0 Price\cf4 ,\cf0 Rules\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Bass'\cf4 ,\cf5 '2'\cf4 ,\cf5 'Roadside Monument'\cf4 ,\cf5 'America'\cf4 ,\cf5 '1000'\cf4 ,\cf5 'Enjoy Tooth and Nail songs by Billy'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Performances\cf4 (\cf3 TYPE\cf4 ,\cf0 ArtistID\cf4 ,\cf3 Name\cf4 ,\cf3 Location\cf4 ,\cf0 Price\cf4 ,\cf0 Rules\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Guitar'\cf4 ,\cf5 '3'\cf4 ,\cf5 ' Ninety Pound Wuss'\cf4 ,\cf5 'New York'\cf4 ,\cf5 '500'\cf4 ,\cf5 'Enjoy Tooth and Nail songs by Carrigan'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Performances\cf4 (\cf3 TYPE\cf4 ,\cf0 ArtistID\cf4 ,\cf3 Name\cf4 ,\cf3 Location\cf4 ,\cf0 Price\cf4 ,\cf0 Rules\cf4 )\cf0  \cf3 values \cf4 (\cf5 'lead-vocals'\cf4 ,\cf5 '4'\cf4 ,\cf5 'The Anti\'96Mother Tour'\cf4 ,\cf5 'Indianapolis'\cf4 ,\cf5 '500'\cf4 ,\cf5 'Enjoy Haste the days songs by Keech'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Performances\cf4 (\cf3 TYPE\cf4 ,\cf0 ArtistID\cf4 ,\cf3 Name\cf4 ,\cf3 Location\cf4 ,\cf0 Price\cf4 ,\cf0 Rules\cf4 )\cf0  \cf3 values \cf4 (\cf5 'clean-vocals'\cf4 ,\cf5 '5'\cf4 ,\cf5 'Napalm & Noise Tour'\cf4 ,\cf5 'Indianapolis'\cf4 ,\cf5 '700'\cf4 ,\cf5 'Enjoy Haste the days songs by Jimmy'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Performances\cf4 (\cf3 TYPE\cf4 ,\cf0 ArtistID\cf4 ,\cf3 Name\cf4 ,\cf3 Location\cf4 ,\cf0 Price\cf4 ,\cf0 Rules\cf4 )\cf0  \cf3 values \cf4 (\cf5 'lead singer'\cf4 ,\cf5 '6'\cf4 ,\cf5 'Spring Break Your Heart Tour'\cf4 ,\cf5 'California'\cf4 ,\cf5 '2000'\cf4 ,\cf5 'Enjoy BEFORE THE EYES songs by Nicholas Moore'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Performances\cf4 (\cf3 TYPE\cf4 ,\cf0 ArtistID\cf4 ,\cf3 Name\cf4 ,\cf3 Location\cf4 ,\cf0 Price\cf4 ,\cf0 Rules\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Drumer'\cf4 ,\cf5 '7'\cf4 ,\cf5 'Shipwreck in the sand Tour'\cf4 ,\cf5 'New York'\cf4 ,\cf5 '1000'\cf4 ,\cf5 'Enjoy BEFORE THE EYES songs by Anthony Damschroder'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Performances\cf4 (\cf3 TYPE\cf4 ,\cf0 ArtistID\cf4 ,\cf3 Name\cf4 ,\cf3 Location\cf4 ,\cf0 Price\cf4 ,\cf0 Rules\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Drum and Guitar'\cf4 ,\cf5 '7'\cf4 ,\cf5 'One Moment Management Tour'\cf4 ,\cf5 'Oceana'\cf4 ,\cf5 '3000'\cf4 ,\cf5 'Enjoy BEFORE THE EYES songs by Anthony Damschroder'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Performances\cf4 (\cf3 TYPE\cf4 ,\cf0 ArtistID\cf4 ,\cf3 Name\cf4 ,\cf3 Location\cf4 ,\cf0 Price\cf4 ,\cf0 Rules\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Guitarist'\cf4 ,\cf5 '4'\cf4 ,\cf5 'Saints and Sinners Tour'\cf4 ,\cf5 'Johannesburg'\cf4 ,\cf5 '1500'\cf4 ,\cf5 'Enjoy Haste the day songs by Keech'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  Performances\cf4 (\cf3 TYPE\cf4 ,\cf0 ArtistID\cf4 ,\cf3 Name\cf4 ,\cf3 Location\cf4 ,\cf0 Price\cf4 ,\cf0 Rules\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Keyboard and vocal'\cf4 ,\cf5 '5'\cf4 ,\cf5 'Scream the Prayer Tour'\cf4 ,\cf5 'Cape town'\cf4 ,\cf5 '2500'\cf4 ,\cf5 'Enjoy Haste the day songs by Jimmy'\cf4 );\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --Query Performance table \cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 select\cf0  \cf4 *\cf0  \cf3 from\cf0  Performances\
+\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --Insert data into MusicTitle table\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 insert\cf0  \cf3 into\cf0  MusicTitles\cf4 (\cf0 MusicName\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Prime Candidate for Burnout'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicTitles\cf4 (\cf0 MusicName\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Burning Bridges'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicTitles\cf4 (\cf0 MusicName\cf4 )\cf0  \cf3 values \cf4 (\cf5 'When Everything Falls'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicTitles\cf4 (\cf0 MusicName\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Pressure the Hinges'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicTitles\cf4 (\cf0 MusicName\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Its a Punk Rock Christmas'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicTitles\cf4 (\cf0 MusicName\cf4 )\cf0  \cf3 values \cf4 (\cf5 'The Dawn of My Death'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicTitles\cf4 (\cf0 MusicName\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Untouchable'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicTitles\cf4 (\cf0 MusicName\cf4 )\cf0  \cf3 values \cf4 (\cf5 'The Hi-Fi Horizon'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicTitles\cf4 (\cf0 MusicName\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Rebellion'\cf4 );\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicTitles\cf4 (\cf0 MusicName\cf4 )\cf0  \cf3 values \cf4 (\cf5 'Visions of Hell'\cf4 );\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --query music titles \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 select\cf0  \cf4 *\cf0  \cf3 from\cf0  MusicTitles\
+\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --insert data into music sales \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 insert\cf0  \cf3 into\cf0  MusicSales\cf4 (\cf0 ArtistID\cf4 ,\cf0 PUB_NAME\cf4 ,\cf0 TITLEID\cf4 ,\cf0 PRICE\cf4 ,\cf0 PUB_DATE\cf4 )\cf0  \cf3 values \cf4 (\cf5 '2'\cf4 ,\cf5 'Tooth & Nail Records'\cf4 ,\cf5 '1'\cf4 ,\cf5 '200.50'\cf4 ,(\cf5 '19940117'\cf4 ));\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicSales\cf4 (\cf0 ArtistID\cf4 ,\cf0 PUB_NAME\cf4 ,\cf0 TITLEID\cf4 ,\cf0 PRICE\cf4 ,\cf0 PUB_DATE\cf4 )\cf0  \cf3 values \cf4 (\cf5 '4'\cf4 ,\cf5 ' Solid State Records'\cf4 ,\cf5 '2'\cf4 ,\cf5 '500'\cf4 ,(\cf5 '20040527'\cf4 ));\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicSales\cf4 (\cf0 ArtistID\cf4 ,\cf0 PUB_NAME\cf4 ,\cf0 TITLEID\cf4 ,\cf0 PRICE\cf4 ,\cf0 PUB_DATE\cf4 )\cf0  \cf3 values \cf4 (\cf5 '4'\cf4 ,\cf5 ' Solid State Records'\cf4 ,\cf5 '3'\cf4 ,\cf5 '600'\cf4 ,(\cf5 '20050610'\cf4 ));\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicSales\cf4 (\cf0 ArtistID\cf4 ,\cf0 PUB_NAME\cf4 ,\cf0 TITLEID\cf4 ,\cf0 PRICE\cf4 ,\cf0 PUB_DATE\cf4 )\cf0  \cf3 values \cf4 (\cf5 '5'\cf4 ,\cf5 ' Solid State Records'\cf4 ,\cf5 '4'\cf4 ,\cf5 '250'\cf4 ,(\cf5 '20070223'\cf4 ));\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicSales\cf4 (\cf0 ArtistID\cf4 ,\cf0 PUB_NAME\cf4 ,\cf0 TITLEID\cf4 ,\cf0 PRICE\cf4 ,\cf0 PUB_DATE\cf4 )\cf0  \cf3 values \cf4 (\cf5 '5'\cf4 ,\cf5 ' Solid State Records'\cf4 ,\cf5 '5'\cf4 ,\cf5 '750'\cf4 ,(\cf5 '20081127'\cf4 ));\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicSales\cf4 (\cf0 ArtistID\cf4 ,\cf0 PUB_NAME\cf4 ,\cf0 TITLEID\cf4 ,\cf0 PRICE\cf4 ,\cf0 PUB_DATE\cf4 )\cf0  \cf3 values \cf4 (\cf5 '6'\cf4 ,\cf5 'InVogue Records'\cf4 ,\cf5 '6'\cf4 ,\cf5 '750'\cf4 ,(\cf5 '20081028'\cf4 ));\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicSales\cf4 (\cf0 ArtistID\cf4 ,\cf0 PUB_NAME\cf4 ,\cf0 TITLEID\cf4 ,\cf0 PRICE\cf4 ,\cf0 PUB_DATE\cf4 )\cf0  \cf3 values \cf4 (\cf5 '7'\cf4 ,\cf5 'InVogue Records'\cf4 ,\cf5 '7'\cf4 ,\cf5 '1050'\cf4 ,(\cf5 '20100316'\cf4 ));\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicSales\cf4 (\cf0 ArtistID\cf4 ,\cf0 PUB_NAME\cf4 ,\cf0 TITLEID\cf4 ,\cf0 PRICE\cf4 ,\cf0 PUB_DATE\cf4 )\cf0  \cf3 values \cf4 (\cf5 '7'\cf4 ,\cf5 'InVogue Records'\cf4 ,\cf5 '8'\cf4 ,\cf5 '1500'\cf4 ,(\cf5 '20121112'\cf4 ));\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicSales\cf4 (\cf0 ArtistID\cf4 ,\cf0 PUB_NAME\cf4 ,\cf0 TITLEID\cf4 ,\cf0 PRICE\cf4 ,\cf0 PUB_DATE\cf4 )\cf0  \cf3 values \cf4 (\cf5 '8'\cf4 ,\cf5 'Master Command Records'\cf4 ,\cf5 '9'\cf4 ,\cf5 '1000'\cf4 ,(\cf5 '20011207'\cf4 ));\cf0 \
+\
+\cf3 insert\cf0  \cf3 into\cf0  MusicSales\cf4 (\cf0 ArtistID\cf4 ,\cf0 PUB_NAME\cf4 ,\cf0 TITLEID\cf4 ,\cf0 PRICE\cf4 ,\cf0 PUB_DATE\cf4 )\cf0  \cf3 values \cf4 (\cf5 '9'\cf4 ,\cf5 'Die Happy Records'\cf4 ,\cf5 '10'\cf4 ,\cf5 '400'\cf4 ,(\cf5 '20000807'\cf4 ));\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --query music sales table\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 select\cf0  \cf4 *\cf0  \cf3 from\cf0  MusicSales\
+\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --Queries for data manipulation\cf0 \
+\
+\cf2 /* Select all columns and all rows from one table */\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 select\cf0  \cf4 *\cf0  \cf3 from\cf0  artist\cf4 ;\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 /* Select 5 columns and all rows from one table */\cf0 \
+\
+	\cf3 select\cf0  ArtistID\cf4 ,\cf0  FirstName\cf4 ,\cf0  LastName\cf4 ,\cf0  Genre\cf4 ,\cf0  Label\
+	\cf3 from\cf0  artist\cf4 ;\cf0 \
+\
+\
+\
+\cf2 /*Create views*/\cf0 \
+\
+\cf2 --Create view called BuyPoster \cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 Create\cf0  \cf3 view\cf0  BuyPoster_view \cf3 as\cf0  \
+	\cf3 select\cf0  \cf4 *\cf0  \
+	\cf3 from\cf0  dbo\cf4 .\cf0 Product\
+	\cf3 where\cf0  ProductName\cf4 =\cf5 'Poster'\cf4 ;\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --Query View BuyPoster\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 Select\cf0  \
+	\cf4 *\cf0  \cf3 from\cf0  dbo\cf4 .\cf0 Product\
+	\cf3 where\cf0  ProductName\cf4 =\cf5 'Poster'\cf4 ;\cf0  \
+\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --Create Performers_View to see the name and information of performers \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 create\cf0  \cf3 view\cf0   Performers_view \cf3 as\cf0 \
+	 \cf3 select\cf0  p\cf4 .\cf3 Name\cf4 ,\cf0 p\cf4 .\cf3 Location\cf4 ,\cf0 p\cf4 .\cf0 Price\cf4 ,\cf0 a\cf4 .\cf0 FirstName\cf4 ,\cf0 a\cf4 .\cf0 LastName\cf4 ,\cf0 a\cf4 .\cf0 artistID\
+	 \cf3 from\cf0  Performances p \cf4 inner\cf0  \cf4 join\cf0  artist a\
+	 \cf3 on\cf0  p\cf4 .\cf0 artistID\cf4 =\cf0 a\cf4 .\cf0 artistID\cf4 ;\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --Query performers view \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 Select\cf0 \
+	p\cf4 .\cf3 Name\cf4 ,\cf0 p\cf4 .\cf3 Location\cf4 ,\cf0 p\cf4 .\cf0 Price\cf4 ,\cf0 a\cf4 .\cf0 FirstName\cf4 ,\cf0 a\cf4 .\cf0 LastName\cf4 ,\cf0 a\cf4 .\cf0 artistID\
+	\cf3 from\cf0  Performances p \cf4 inner\cf0  \cf4 join\cf0  artist a\
+	\cf3 on\cf0  p\cf4 .\cf0 artistID\cf4 =\cf0 a\cf4 .\cf0 artistID\
+	\cf3 order\cf0  \cf3 by\cf0  artistID \cf3 asc\cf4 ;\cf0  \
+\pard\pardeftab720\ri0\sl259\slmult1\sa160\partightenfactor0
+
+\f1\fs22 \cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f0\fs19 \cf2 /*Need to update the data */\cf0 \
+\
+\cf2 --query before the update \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 select\cf0  \cf4 *\cf0  \cf3 from\cf0  MusicSales\cf4 ;\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --update price by increasing 5* price already set for music sales \cf0 \
+	\cf6 update\cf0  musicsales \cf3 set\cf0  price\cf4 =\cf0 price\cf4 +\cf0 5\cf4 *\cf0 price\cf4 ;\cf0 \
+\pard\pardeftab720\ri0\sl259\slmult1\sa160\partightenfactor0
+\cf0 	\cf3 select\cf0  \cf4 *\cf0  \cf3 from\cf0  MusicSales\cf4 ;
+\f1\fs22 \cf0 \
+}

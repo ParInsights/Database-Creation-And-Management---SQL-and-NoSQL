@@ -1,0 +1,390 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fmodern\fcharset0 Courier;\f1\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;\red0\green128\blue0;\red0\green0\blue255;\red128\green128\blue128;
+\red255\green0\blue255;\red255\green0\blue0;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c50196\c0;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c50196\c50196\c50196;
+\csgenericrgb\c100000\c0\c100000;\csgenericrgb\c100000\c0\c0;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri-720\partightenfactor0
+
+\f0\fs19 \cf2 -- Declare a variable (we\'92ll talk about variables in a minute)\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 declare\cf0  @isThisNull \cf3 varchar\cf4 (\cf0 30\cf4 )\cf0  \cf2 -- Starts out as NULL\cf0 \
+\cf3 SELECT\cf0  @isThisNull\cf4 ,\cf0  \cf5 ISNULL\cf4 (\cf0 @isThisNull\cf4 ,\cf0  \cf6 'Yep, it is null'\cf4 )\cf0  \cf2 -- See?\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 -- Set the variable to something other than NULL\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 SET\cf0  @isThisNull \cf4 =\cf0  \cf6 'Nope. It is not NULL'\cf0 \
+\cf3 SELECT\cf0  @isThisNull\cf4 ,\cf0  \cf5 ISNULL\cf4 (\cf0 @isThisNull\cf4 ,\cf0  \cf6 'Yep, it is null'\cf4 )\cf0  \cf2 -- How about now?\cf0 \
+\
+\cf3 CREATE\cf0  \cf3 FUNCTION\cf0  dbo\cf4 .\cf0 AddTwoInts\cf4 (\cf0 @firstNumber \cf3 int\cf4 ,\cf0  @secondNumner \cf3 int\cf4 )\cf0 \
+\cf3 RETURNS\cf0  \cf3 int\cf0  \cf3 AS\cf0 \
+\cf3 BEGIN\cf0 \
+	\cf2 --First, declare the variable to temporarily hold the results\cf0 \
+	\cf3 DECLARE\cf0  @returnValue \cf3 int\cf2 -- the data type mateches the "RETURNS" clause\cf0 \
+\
+	\cf2 --Do whatever needs to be done to set tht variable to the correct value \cf0 \
+	\cf3 SET\cf0  @returnValue \cf4 =\cf0  @firstNumber \cf4 +\cf0  @secondNumner\
+\
+	\cf2 --Return the value to the calling statement\cf0 \
+	\cf3 RETURN\cf0  @returnValue\
+\cf3 END\cf0 \
+\cf3 GO\cf0 \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 --Functions to count the Vidcasts made by a given USER\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 CREATE\cf0  \cf3 FUNCTION\cf0  dbo\cf4 .\cf0 vc_VidCastCount\cf4 (\cf0 @UserID \cf3 int\cf4 )\cf0 \
+\cf3 RETURNS\cf0  \cf3 int\cf0  \cf3 AS\cf0  \cf2 --COUNT() is an integer value, so return it as an int\cf0 \
+\cf3 BEGIN\cf0  \
+	\cf3 DECLARE\cf0  @returnValue \cf3 int\cf2 --matches the fucntions return type \cf0 \
+\
+	\cf2 /*\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 		Get the count of the Vidcasts for the provided userID and \cf0 \
+\cf2 		assign that value to @returnValue. Note that we use th\cf0 \
+\cf2 		e @userID parameter in the WHERE clause to limit our\cf0 \
+\cf2 		count to that users Vidcast record.\cf0 \
+\
+\cf2 	*/\cf0 \
+	\cf3 SELECT\cf0  @returnValue \cf4 =\cf0  \cf5 COUNT\cf4 (\cf0 vc_UserID\cf4 )\cf0  \cf3 FROM\cf0  vc_VidCast\
+	\cf3 WHERE\cf0  vc_VidCast\cf4 .\cf0 vc_UserID \cf4 =\cf0  @userID\
+\
+	\cf2 --Return @returnValue to the calling code\cf0 \
+	\cf3 RETURN\cf0  @returnValue\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 END\cf0 \
+\cf3 GO\cf0 \
+\
+\cf3 SELECT\cf0  \cf3 TOP\cf0  10\
+	\cf4 *\cf0 \
+	\cf4 ,\cf0  dbo\cf4 .\cf0 vc_VidCastCount\cf4 (\cf0 vc_UserID\cf4 )\cf0  \cf3 as\cf0  VidCastCount\
+	\cf3 FROM\cf0  vc_User\
+	\cf3 ORDER\cf0  \cf3 BY\cf0  VidCastCount \cf3 DESC\cf0 \
+\
+\cf3 GO\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 --Function to retrieve the vc_TagID for a given tag's text\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 CREATE\cf0  \cf3 FUNCTION\cf0  dbo\cf4 .\cf0 vc_TagIDLookup\cf4 (\cf0 @tagText \cf3 varchar\cf4 (\cf0 20\cf4 ))\cf0 \
+\cf3 RETURNS\cf0  \cf3 int\cf0  \cf3 AS\cf0  \cf2 -- vc_TAGID is an int, so we'll match that \cf0 \
+\cf3 BEGIN\cf0  \
+	\cf3 DECLARE\cf0  @returnValue \cf3 int\cf0  \cf2 --Matches the functions return type\cf0 \
+\
+	\cf2 /*\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 		Get the vc_TagID of the vc_Tag record whose tagText \cf0 \
+\cf2 		matches the parameter and assign that value to @returnValue\cf0 \
+\
+\cf2 	*/\cf0 \
+	\cf3 SELECT\cf0  @returnValue \cf4 =\cf0  vc_TagID \cf3 FROM\cf0  vc_Tag\
+	\cf3 WHERE\cf0  TagText \cf4 =\cf0  @tagText\
+\
+	\cf2 --Send the vc_TagID back to the caller\cf0 \
+	\cf3 RETURN\cf0  @returnValue\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 END\cf0  \
+\cf3 GO\cf0  \
+\
+\cf3 SELECT\cf0  dbo\cf4 .\cf0 vc_TagIDLookup\cf4 (\cf6 'Music'\cf4 )\cf0 \
+\cf3 SELECT\cf0  dbo\cf4 .\cf0 vc_TagIDLookup\cf4 (\cf6 'Tunes'\cf4 )\cf0 \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 --Create a view to retrieve the top 10 vc_Users and their \cf0 \
+\cf2 --Vidcast counts\cf0 \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 CREATE\cf0  \cf3 VIEW\cf0  vc_MostProlificUser \cf3 AS\cf0 \
+	\cf3 SELECT\cf0  \cf3 TOP\cf0  10\
+	\cf4 *\cf0 \
+	\cf4 ,\cf0  dbo\cf4 .\cf0 vc_VidCastCount\cf4 (\cf0 vc_UserID\cf4 )\cf0  \cf3 as\cf0  VidCastCount\
+	\cf3 FROM\cf0  vc_User\
+	\cf3 ORDER\cf0  \cf3 BY\cf0  VidCastCount \cf3 DESC\cf0 \
+\cf3 GO\cf0  \
+\
+\cf3 SELECT\cf0  \cf4 *\cf0  \cf3 FROM\cf0  vc_MostProlificUser\
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 --Create a procedure to update a vc_User's email address\cf0 \
+\cf2 --The first parameter is the user name for the user to change \cf0 \
+\cf2 --The second is the new email address\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 CREATE\cf0  \cf3 PROCEDURE\cf0  vc_ChangeUserEmail\cf4 (\cf0 @userName \cf3 varchar\cf4 (\cf0 20\cf4 ),\cf0  @newEmail \cf3 varchar\cf4 (\cf0 50\cf4 ))\cf0 \
+\cf3 AS\cf0 \
+\cf3 BEGIN\cf0 \
+	\cf5 UPDATE\cf0  vc_User \cf3 SET\cf0  EmailAddress \cf4 =\cf0  @newEmail\
+	\cf3 WHERE\cf0  UserName \cf4 =\cf0  @userName\
+\cf3 END\cf0 \
+\cf3 GO\cf0 \
+\
+\
+\cf3 EXEC\cf0  vc_ChangeUserEmail\cf3  \cf6 'tardy'\cf4 ,\cf0  \cf6 'kmstudent2syr.edu'\cf0  \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 --See effect of code above\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 SELECT\cf0  \cf4 *\cf0  \cf3 FROM\cf0  vc_User \cf3 WHERE\cf0  UserName \cf4 =\cf0  \cf6 'tardy'\cf0 \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 --@@Identity \cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 INSERT\cf0  \cf3 INTO\cf0  vc_Tag\cf4 (\cf0 TagText\cf4 )\cf0  \cf3 VALUES \cf4 (\cf6 'Cat Videos'\cf4 )\cf0 \
+\cf3 SELECT\cf0  \cf4 *\cf0  \cf3 FROM\cf0  vc_Tag \cf3 WHERE\cf0  vc_TagID \cf4 =\cf0  \cf5 @@IDENTITY\cf0 \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 /*Create a procedure that adds a row to the UserLogin tablw\cf0 \
+\cf2 This procedure is run when a user logs in a we need \cf0 \
+\cf2 to record who thye are and from where they're logging in. \cf0 \
+\cf2 */\cf0  \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 CREATE\cf0  \cf3 PROCEDURE\cf0  vc_AddUserLogin\cf4 (\cf0 @userName \cf3 varchar\cf4 (\cf0 20\cf4 ),\cf0  @loginFrom \cf3 varchar\cf4 (\cf0 50\cf4 ))\cf0 \
+\cf3 AS\cf0 \
+\cf3 BEGIN\cf0 \
+	\cf2 --We have the user name, but we need the ID for the login table\cf0 \
+	\cf2 --First, delcare a varaible to hold the ID\cf0 \
+	\cf3 DECLARE\cf0  @userID \cf3 int\cf0 \
+\
+	\cf2 --Get the vc_UserID for the UserName provided and sore it in the @userID \cf0 \
+	\cf3 SELECT\cf0  @userID \cf4 =\cf0  vc_UserID \cf3 FROM\cf0  vc_User\
+	\cf3 WHERE\cf0  UserName \cf4 =\cf0  @userName\
+	\
+	\cf2 --Now we can add the row against an INSERT statement\cf0 \
+	\cf3 INSERT\cf0  \cf3 INTO\cf0  vc_UserLogin\cf3  \cf4 (\cf0 vc_UserID\cf4 ,\cf0  LoginLocation\cf4 )\cf0 \
+	\cf3 VALUES \cf4 (\cf0 @userID\cf4 ,\cf0  @loginFrom\cf4 )\cf0 \
+\
+	\cf2 --Now return the @@identity so the calling code knows where \cf0 \
+	\cf2 --the data ended up\cf0 \
+	\cf3 RETURN\cf0  \cf5 @@identity\cf0  \
+\cf3 END\cf0  \
+\cf3 GO\cf0  \
+\
+\cf3 DECLARE\cf0  @addedValue \cf3 int\cf0 \
+\cf3 EXEC\cf0  @addedValue \cf4 =\cf0  vc_AddUserLogin\cf3  \cf6 'tardy'\cf4 ,\cf0  \cf6 'localhost'\cf0  \
+\cf3 SELECT\cf0 \
+	vc_User\cf4 .\cf0 vc_UserID\
+	\cf4 ,\cf0  vc_User\cf4 .\cf0 UserName\
+	\cf4 ,\cf0  vc_UserLogin\cf4 .\cf0 UserLoginTimestamp\
+	\cf4 ,\cf0  vc_UserLogin\cf4 .\cf0 LoginLocation\
+\cf3 FROM\cf0  vc_User\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 JOIN\cf0  vc_UserLogin \cf3 ON\cf0  vc_User\cf4 .\cf0 vc_UserID \cf4 =\cf0  vc_UserLogin\cf4 .\cf0 vc_UserID\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 WHERE\cf0  vc_UserLoginID \cf4 =\cf0  @addedValue\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 /* \cf0 \
+\cf2 	----------------PART 2--------------------------------------\cf0 \
+\cf2 */\cf0  \
+\
+\
+\cf2 /* \cf0 \
+\cf2 	1. Create a function to retrieve a vc_UserID for a given user name\cf0 \
+\cf2 */\cf0  \
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 GO\cf0 \
+\cf3 CREATE\cf0  \cf3 FUNCTION\cf0  dbo\cf4 .\cf0 vc_UserIDLookup\cf4 (\cf0 @userName \cf3 varchar\cf4 (\cf0 20\cf4 ))\cf0 \
+\cf3 RETURNS\cf0  \cf3 int\cf0  \cf3 AS\cf0 \
+\cf3 BEGIN\cf0  \
+	\cf3 DECLARE\cf0  @returnValue \cf3 int\cf0 \
+\
+		\cf2 --TODO: Write the code to assign hte correct vc_UserID \cf0 \
+		\cf2 --		to @returnValeu\cf0 \
+		\cf3 SELECT\cf0  @returnValue \cf4 =\cf0  vc_UserID \cf3 FROM\cf0  vc_User\
+		\cf3 WHERE\cf0  UserName \cf4 =\cf0  @userName\
+	\cf3 RETURN\cf0  @returnValue\
+\cf3 END\cf0 \
+\cf3 GO\cf0  \
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 --Query used to get results of 1. code--\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 SELECT\cf0  \cf6 'Trying the vc_UserIDLookup function.'\cf4 ,\cf0  dbo\cf4 .\cf0 vc_UserIDLookup\cf4 (\cf6 'tardy'\cf4 )\cf0 \
+\
+\
+\
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 /* \cf0 \
+\cf2 	2. Create a function to calculate count of vc_VidCastIDs for a given vc_TagID\cf0 \
+\cf2 */\cf0  \
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 CREATE\cf0  \cf3 FUNCTION\cf0  dbo\cf4 .\cf0 vc_TagVidCastCount\cf4 (\cf0 @TagID \cf3 int\cf4 )\cf0 \
+\cf3 RETURNS\cf0  \cf3 int\cf0  \cf3 AS\cf0  \
+\cf3 BEGIN\cf0 \
+	\cf3 DECLARE\cf0  @returnValue \cf3 int\cf0 \
+\
+	\cf3 SELECT\cf0  @returnValue \cf4 =\cf0  \cf5 COUNT\cf4 (\cf0 vc_TagID\cf4 )\cf0  \cf3 from\cf0  vc_VidCastTagList\
+	\cf3 WHERE\cf0  vc_VidCastTagList\cf4 .\cf0 vc_TagID \cf4 =\cf0  @TagID\
+	\
+	\cf3 RETURN\cf0  @returnValue\
+\cf3 END\cf0 \
+\cf3 GO\cf0 \
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 --Query used to get results of Tags with number of Vidcasts---\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 SELECT\cf0  \
+	vc_Tag\cf4 .\cf0 TagText\
+	\cf4 ,\cf0  dbo\cf4 .\cf0 vc_TagVidCastCount\cf4 (\cf0 vc_Tag\cf4 .\cf0 vc_TagID\cf4 )\cf0  \cf3 as\cf0  Vidcasts\
+\cf3 FROM\cf0  vc_Tag\
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 /* \cf0 \
+\cf2 	3. Create a function that sums the total number of minutes of\cf0 \
+\cf2 	actual duration for VidCast swith Finished status given vc_UserID \cf0 \
+\cf2 	as a Parameter. Return SUM as a int. \cf0 \
+\cf2 */\cf0  \
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 CREATE\cf0  \cf3 FUNCTION\cf0  dbo\cf4 .\cf0 vc_VidCastDuration\cf4 (\cf0 @UserID \cf3 varchar\cf4 (\cf0 20\cf4 ))\cf0 \
+\cf3 RETURNS\cf0  \cf3 int\cf0  \cf3 AS\cf0 \
+\cf3 BEGIN\cf0  \
+	\cf3 DECLARE\cf0  @returnValue \cf3 int\cf0 \
+	\cf3 SELECT\cf0  @returnValue \cf4 =\cf0  \cf5 DATEDIFF\cf4 (\cf0 n\cf4 ,\cf0 StartDateTime\cf4 ,\cf0  EndDateTime\cf4 )\cf0  \cf3 FROM\cf0  vc_VidCast\
+	\cf3 WHERE\cf0  vc_VidCast\cf4 .\cf0 vc_UserID \cf4 =\cf0  @UserID\
+	\cf3 RETURN\cf0  @returnValue\
+\cf3 END\cf0  \
+\cf3 GO\cf0  \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 --Query to get results--\cf0 \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 SELECT\cf0  \
+	\cf4 *\cf0 \
+	\cf4 ,\cf0  dbo\cf4 .\cf0 vc_VidCastDurational\cf4 (\cf0 vc_UserID\cf4 )\cf0  \cf3 as\cf0  TotalMinutes\
+\cf3 FROM\cf0  vc_User\
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 /* \cf0 \
+\cf2 	4. Create view called Vc_TagReport \cf0 \
+\cf2 */\cf0  \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 CREATE\cf0  \cf3 VIEW\cf0  vc_TagReport \cf3 AS\cf0 \
+	\
+	\cf3 SELECT\cf0  dbo\cf4 .\cf0 vc_TagVidCastCount\cf4 (\cf0 vc_Tag\cf4 .\cf0 vc_TagID\cf4 )\cf0  \cf3 as\cf0  VidCasts \
+	\cf3 FROM\cf0  vc_Tag\
+	\cf3 GO\cf0 \
+\
+\
+	\cf2 --Query--\cf0 \
+\cf3 SELECT\cf0  \
+	vc_Tag\cf4 .\cf0 TagText\
+	\cf4 ,\cf0  dbo\cf4 .\cf0 vc_TagVidCastCount\cf4 (\cf0 vc_Tag\cf4 .\cf0 vc_TagID\cf4 )\cf0  \cf3 as\cf0  VidCasts\
+	\cf3 FROM\cf0  vc_Tag\
+	\cf3 ORDER\cf0  \cf3 BY\cf0  VidCasts \cf3 DESC\cf0 \
+\
+	\cf2 /* \cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 	5. ALter View cc_MostProlificUser and add a column TotalMinutes\cf0 \
+\cf2 */\cf0  \
+\
+	\cf3 ALTER\cf0  \cf3 VIEW\cf0  vc_MostProlificUser \cf3 AS\cf0 \
+	\cf3 SELECT\cf0  \cf3 TOP\cf0  10\
+	\cf4 *\cf0 \
+	\cf4 ,\cf0  dbo\cf4 .\cf0 vc_VidCastDurational\cf4 (\cf0 vc_UserID\cf4 )\cf0  \cf3 as\cf0  TotalMinutes\
+	\cf4 ,\cf0  dbo\cf4 .\cf0 vc_VidCastCount\cf4 (\cf0 vc_UserID\cf4 )\cf0  \cf3 as\cf0  VidCastCount\
+	\cf3 FROM\cf0  vc_User\
+	\cf3 ORDER\cf0  \cf3 BY\cf0  VidCastCount \cf3 DESC\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 GO\cf0  \
+\
+\
+\cf3 SELECT\cf0  UserName\cf4 ,\cf0  VidCastCount\cf4 ,\cf0  TotalMinutes \cf3 FROM\cf0  vc_MostProlificUser\
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 /* \cf0 \
+\cf2 	6. Coding Stored Procedure\cf0 \
+\cf2 	\cf0 \
+\cf2 */\cf0  \
+\
+\cf2 /* \cf0 \
+\cf2 	Creat a stored procedure to addd a new TAG to the database\cf0 \
+\cf2 	INPUTS \cf0 \
+\cf2 		@tagText : text of a new tag\cf0 \
+\cf2 		@description: a brief description of the tag (nullable)\cf0 \
+\cf2 	RETUR?NS\cf0 \
+\cf2 		@@identity wit hthe value intserted\cf0 \
+\cf2 	\cf0 \
+\cf2 */\cf0  \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 CREATE\cf0  \cf3 PROCEDURE\cf0  vc_AddTag\cf4 (\cf0 @tagText \cf3 varchar\cf4 (\cf0 20\cf4 ),\cf0  @description \cf3 varchar\cf4 (\cf0 100\cf4 )=NULL)\cf0  \cf3 AS\cf0 \
+\cf3 BEGIN\cf0 \
+	\cf3 DECLARE\cf0  @tagID \cf3 int\cf0 \
+	\cf3 SELECT\cf0  @tagID \cf4 =\cf0  vc_TagID \cf3 FROM\cf0  vc_Tag\
+	\cf3 WHERE\cf0  TagText \cf4 =\cf0  @tagText\
+	\cf3 INSERT\cf0  \cf3 INTO\cf0  vc_AddTag\cf4 (\cf0 TagText\cf4 .\cf0  TagDescription\cf4 )\cf0  \
+	\cf3 VALUES \cf4 (\cf0 @tagText\cf4 ,\cf0  @description\cf4 )\cf0 \
+	\cf3 RETURN\cf0  \cf5 @@identity\cf0 \
+\cf3 END\cf0  \
+\cf3 GO\cf0  \
+\
+\cf3 DECLARE\cf0  @newTagID \cf3 int\cf0 \
+\cf3 EXEC\cf0  @newTagID \cf4 =\cf0  vc_AddTag\
+\cf3 	\cf6 'SQL'\cf4 ,\cf0   \cf6 'Finally, a SQL Tag'\cf0 \
+\cf3 SELECT\cf0  \cf4 *\cf0  \cf3 FROM\cf0  vc_Tag \cf3 where\cf0  vc_TagID \cf4 =\cf0  @newTagID\
+\
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 /* \cf0 \
+\cf2 	7. Coding Stored Procedure called vc_FinishVidCast\cf0 \
+\cf2 	\cf0 \
+\cf2 */\cf0  \
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 CREATE\cf0  \cf3 PROCEDURE\cf0  vc_FinishVidCast\cf4 (\cf0 @vidCastID \cf3 int\cf4 ,\cf0  @newStatusID \cf3 int\cf4 )\cf0 \
+\cf3 AS\cf0  \
+\cf3 BEGIN\cf0  \
+	\cf3 DECLARE\cf0  @currentDateTime \cf3 datetime\cf0  \cf4 =\cf0  \cf5 GETDATE\cf4 ()\cf0 \
+	\cf3 SELECT\cf0  @currentDateTime \cf4 =\cf0  EndDateTime \cf3 FROM\cf0  vc_VidCast\
+	\cf5 UPDATE\cf0  vc_VidCast \cf3 SET\cf0  EndDateTime \cf4 =\cf0  @currentDateTime\
+	\cf3 WHERE\cf0  vc_VidCastID \cf4 =\cf0  @vidCastID\
+\
+\cf3 END\cf0  \
+\cf3 GO\cf0 \
+\
+\
+\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf2 --query--\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 DECLARE\cf0  @newVC \cf3 int\cf0 \
+\cf3 INSERT\cf0  \cf3 INTO\cf0  vc_VidCast\
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 (\cf0 VidCastTitle\cf4 ,\cf0  StartDateTime\cf4 ,\cf0  ScheduleDurationMinutes\cf4 ,\cf0  vc_UserID\cf4 ,\cf0 \
+vc_StatusID\cf4 )\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 VALUES \cf4 (\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf6 'Finally done with sprocs'\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf4 ,\cf0  \cf5 DATEADD\cf4 (\cf0 n\cf4 ,\cf0  \cf4 -\cf0 45\cf4 ,\cf0  \cf5 GETDATE\cf4 ())\cf0 \
+\cf4 ,\cf0  45\
+\cf4 ,\cf3  \cf4 (\cf3 SELECT\cf0  vc_UserID \cf3 FROM\cf0  vc_User \cf3 WHERE\cf0  UserName \cf4 =\cf0  \cf6 'tardy'\cf4 )\cf0 \
+\cf4 ,\cf3  \cf4 (\cf3 SELECT\cf0  vc_StatusID \cf3 FROM\cf0  vc_Status \cf3 WHERE\cf0  StatusText\cf4 =\cf6 'Started'\cf4 )\cf0 \
+\cf4 )\cf0 \
+\pard\pardeftab720\ri-720\partightenfactor0
+\cf3 SET\cf0  @newVC \cf4 =\cf0  \cf5 @@identity\cf0 \
+\cf3 SELECT\cf0  \cf4 *\cf0  \cf3 FROM\cf0  vc_VidCast \cf3 WHERE\cf0  vc_VidCastID \cf4 =\cf0  @newVC\
+\cf3 EXEC\cf0  vc_FinishVidCast\cf3  \cf0 @newVC\
+\cf3 SELECT\cf0  \cf4 *\cf0  \cf3 FROM\cf0  vc_VidCast \cf3 WHERE\cf0  vc_VidCastID \cf4 =\cf0  @newVC\
+\pard\pardeftab720\ri-720\sl259\slmult1\sa160\partightenfactor0
+
+\f1\fs22 \cf0 \
+}

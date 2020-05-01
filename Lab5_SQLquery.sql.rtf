@@ -1,0 +1,174 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf600
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fmodern\fcharset0 Courier;}
+{\colortbl;\red255\green255\blue255;\red0\green128\blue0;\red0\green0\blue255;\red128\green128\blue128;
+\red255\green0\blue255;\red255\green0\blue0;}
+{\*\expandedcolortbl;;\csgenericrgb\c0\c50196\c0;\csgenericrgb\c0\c0\c100000;\csgenericrgb\c50196\c50196\c50196;
+\csgenericrgb\c100000\c0\c100000;\csgenericrgb\c100000\c0\c0;}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\ri0\sl259\slmult1\sa160\partightenfactor0
+
+\f0\fs22 \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+
+\f1\fs19 \cf2 /*\cf0 \
+\cf2 	Author : Saul Hudson\cf0 \
+\cf2 	Course : IST659 M400\cf0 \
+\cf2 	Term : April,2018 \cf0 \
+\cf2 */\cf0 \
+\
+\cf2 -- Creating the User Table\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 Create\cf0  \cf3 Table\cf0  vc_User\cf3  \cf4 (\cf0  \
+	\cf2 --Columns for the User Table\cf0 \
+	vc_UserID \cf3 int\cf0  \cf3 identity\cf4 ,\cf0 \
+	UserName \cf3 varchar\cf4 (\cf0 20\cf4 )\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	EmailAddress \cf3 varchar\cf4 (\cf0 50\cf4 )\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	UserDescription \cf3 varchar \cf4 (\cf0 200\cf4 ),\cf0 \
+	WebsiteURL \cf3 varchar \cf4 (\cf0 50\cf4 ),\cf0 \
+	UserRegisteredDate \cf3 datetime\cf0  \cf4 not\cf0  \cf4 null\cf0  \cf3 default\cf0  \cf5 GetDate\cf4 (),\cf0 \
+	\cf2 --Constrains on the User Table \cf0 \
+	\cf3 CONSTRAINT\cf0  PK_vc_User \cf3 Primary\cf0  \cf3 Key \cf4 (\cf0 vc_UserID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  U1_vc_User \cf3 UNIQUE\cf4 (\cf0 UserName\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  U2_vc_User \cf3 UNIQUE\cf4 (\cf0 EmailAddress\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --End Creating the User Table \cf0 \
+\
+\cf2 --Creating the User Login Table\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 Create\cf0  \cf3 table\cf0  vc_UserLogin\cf3  \cf4 (\cf0 \
+	\cf2 --Columns for the UserLogin table\cf0 \
+	vc_UserLoginID \cf3 int\cf0  \cf3 identity\cf4 ,\cf0  \
+	vc_UserID \cf3 int\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	UserLoginTimestamp \cf3 datetime\cf0  \cf4 not\cf0  \cf4 null\cf0  \cf3 default\cf0  \cf5 GetDate\cf4 (),\cf0  \
+	LoginLocation \cf3 varchar\cf4 (\cf0 50\cf4 )\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	\cf2 --Contraints on the User Login Table \cf0 \
+	\cf3 CONSTRAINT\cf0  PK_vc_UserLogin \cf3 PRIMARY\cf0  \cf3 KEY \cf4 (\cf0 Vc_UserLoginID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  FK1_vc_UserLogin \cf3 FOREIGN\cf0  \cf3 KEY \cf4 (\cf0 vc_UserID\cf4 )\cf0  \cf3 REFERENCES\cf0  vc_User\cf4 (\cf0 vc_USERID\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --End Creating the User Login Table \cf0 \
+\
+\cf2 --Adding Data to the User Table\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 INSERT\cf0  \cf3 INTO\cf0  vc_User\cf4 (\cf0 UserName\cf4 ,\cf0  EmailAddress\cf4 ,\cf0  UserDescription\cf4 )\cf0 \
+	\cf3 Values\cf0  \
+\cf3 		\cf4 (\cf6 'RDwight'\cf0  \cf6 'rdwight@nodomain.xyz'\cf4 ,\cf0  \cf6 'Piano Teacher'\cf4 ),\cf0 \
+\cf3 		\cf4 (\cf6 'SaulHudson'\cf4 ,\cf0  \cf6 'slash@nodoman.xyz'\cf4 ,\cf0  \cf6 'I like Les Paul guitars'\cf4 ),\cf0 \
+\cf3 		\cf4 (\cf6 'Gordon'\cf4 ,\cf0  \cf6 'summer@nodomain.xyz'\cf4 ,\cf0  \cf6 'Former cop'\cf4 )\cf0 \
+\cf3 SELECT\cf0  \cf4 *\cf0  \cf3 FROM\cf0  vc_User\
+\
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --Creating the Followers List Table \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 CREATE\cf0  \cf3 TABLE\cf0  vc_FollowerList\cf3  \cf4 (\cf0 \
+	\cf2 --Columns for the follower List table\cf0 \
+	vc_FollowerListID \cf3 int\cf0  \cf3 identity\cf4 ,\cf0 \
+	FollowerID \cf3 int\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	FollowedID \cf3 int\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	FollowerSince \cf3 datetime\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	\cf2 --Constraints on the Follower List Table \cf0 \
+	\cf3 CONSTRAINT\cf0  PK_vc_FollowerList \cf3 PRIMARY\cf0  \cf3 KEY \cf4 (\cf0 vc_FollowerListID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  U1_vc_FollowerList \cf3 UNIQUE \cf4 (\cf0 FollowerID\cf4 ,\cf0  FollowedID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  FK1_vc_FollowerList \cf3 FOREIGN\cf0  \cf3 KEY \cf4 (\cf0 FollowerID\cf4 )\cf0  \cf3 REFERENCES\cf0  vc_User\cf3  \cf4 (\cf0 vc_UserID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  FK2_vc_FollowerList \cf3 FOREIGN\cf0  \cf3 KEY \cf4 (\cf0 FollowedID\cf4 )\cf0  \cf3 REFERENCES\cf0  vc_User\cf3  \cf4 (\cf0 vc_UserID\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf4 )\cf0 \
+\
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --End Creating the Follower List Table \cf0 \
+\
+\cf2 --Creating the Tag table \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 CREATE\cf0  \cf3 TABLE\cf0  vc_Tag\cf3  \cf4 (\cf0 \
+	\cf2 --Columns for the tag table \cf0 \
+	vc_TagID \cf3 int\cf0  \cf3 identity\cf4 ,\cf0 \
+	TagText \cf3 varchar\cf4 (\cf0 20\cf4 )\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	TagDescription \cf3 varchar\cf4 (\cf0 100\cf4 )\cf0 \
+	\cf2 --Constraints on the Tag Table\cf0 \
+	\cf3 CONSTRAINT\cf0  PK_vc_Tag \cf3 PRIMARY\cf0  \cf3 KEY \cf4 (\cf0 vc_TagID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  U1_vc_Tag \cf3 UNIQUE \cf4 (\cf0 TagText\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --End Creating Tag Table \cf0 \
+\
+\cf2 --Creating the Status Table \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 CREATE\cf0  \cf3 TABLE\cf0  vc_Status\cf3  \cf4 (\cf0 \
+	\cf2 --Columns for the status table\cf0 \
+	vc_StatusID \cf3 int\cf0  \cf3 identity\cf4 ,\cf0  \
+	StatusText \cf3 varchar\cf4 (\cf0 20\cf4 ),\cf0  \
+	\cf2 --Constraints on the Status Table \cf0 \
+	\cf3 CONSTRAINT\cf0  PK_vc_Status \cf3 PRIMARY\cf0  \cf3 KEY \cf4 (\cf0 vc_StatusID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  U1_vc_Status \cf3 UNIQUE \cf4 (\cf0 StatusText\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --End Creating the Status Table \cf0 \
+\
+\
+\cf2 --Creating the VidCast Table \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 CREATE\cf0  \cf3 TABLE\cf0  vc_VidCast\cf3  \cf4 (\cf0 \
+	\cf2 --Columns for the Vidcast table \cf0 \
+	vc_VidCastID \cf3 int\cf0  \cf3 identity\cf4 ,\cf0 \
+	VidCastTitle \cf3 varchar\cf4 (\cf0 50\cf4 )\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	StartDateTime \cf3 datetime\cf4 ,\cf0 \
+	EndDateTime \cf3 datetime\cf4 ,\cf0 \
+	ScheduledDurationMinutes \cf3 int\cf4 ,\cf0 \
+	RecordingURL \cf3 varchar\cf4 (\cf0 50\cf4 ),\cf0 \
+	vc_UserID \cf3 int\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	vc_StatusID \cf3 int\cf0  \cf4 not\cf0  \cf4 null\cf0  \
+	\cf2 --CONSTRAINTS on the VidCast Table \cf0 \
+	\cf3 CONSTRAINT\cf0  PK_vc_VidCast \cf3 PRIMARY\cf0  \cf3 KEY \cf4 (\cf0 vc_VidCastID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  FK1_vc_VidCast \cf3 FOREIGN\cf0  \cf3 KEY \cf4 (\cf0 vc_UserID\cf4 )\cf0  \cf3 REFERENCES\cf0  vc_User\cf4 (\cf0 vc_UserID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  FK2_vc_VicCast \cf3 FOREIGN\cf0  \cf3 KEY \cf4 (\cf0 vc_StatusID\cf4 )\cf0  \cf3 REFERENCES\cf0  vc_Status\cf4 (\cf0 vc_StatusID\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --End Creating VidCast Table\cf0 \
+\
+\
+\cf2 --Creating the VidCast Tag List Table \cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 CREATE\cf0  \cf3 TABLE\cf0  vc_VidCastTagList\cf3  \cf4 (\cf0 \
+	\cf2 --Columns for the VidCast Tag List Table \cf0 \
+	vc_VidCastTagListID \cf3 int\cf0  \cf3 identity\cf4 ,\cf0 \
+	vc_TagID \cf3 int\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	vc_VidCastID  \cf3 int\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	\cf2 --Constraint on the VidCast Tag List Table \cf0 \
+	\cf3 CONSTRAINT\cf0  PK_vc_VidCastTagList \cf3 PRIMARY\cf0  \cf3 KEY\cf4 (\cf0 vc_VidCastTagListID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  U1_vc_VidCastTagList \cf3 UNIQUE \cf4 (\cf0 vc_TagID\cf4 ,\cf0  vc_VidCastID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  FK1_vc_VidCastTagList \cf3 FOREIGN\cf0  \cf3 KEY \cf4 (\cf0 vc_TagID\cf4 )\cf0  \cf3 REFERENCES\cf0  vc_Tag\cf4 (\cf0 vc_TagID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  FK2_vc_VidCastTagList \cf3 FOREIGN\cf0  \cf3 KEY \cf4 (\cf0 vc_VidCastID\cf4 )\cf0  \cf3 REFERENCES\cf0  vc_VidCast\cf4 (\cf0 vc_VidCastID\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --End creating the VidCast Tag List Table \cf0 \
+\
+\cf2 --Creating the User Tag List Table\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf3 CREATE\cf0  \cf3 TABLE\cf0  vc_UserTagList\cf3  \cf4 (\cf0  \
+	\cf2 --Columns for the User Tag List Table \cf0 \
+	vc_UserTagListID \cf3 int\cf0  \cf3 identity\cf4 ,\cf0 \
+	vc_TagID \cf3 int\cf0  \cf4 not\cf0  \cf4 null,\cf0 \
+	vc_UserID \cf3 int\cf0  \cf4 not\cf0  \cf4 null\cf0  \
+	\cf2 --Constraints on the User Tag List Table \cf0 \
+	\cf3 CONSTRAINT\cf0  PK_vc_UserTagList \cf3 PRIMARY\cf0  \cf3 KEY\cf4 (\cf0 vc_UserTagListID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  U1_vc_UserTagList \cf3 UNIQUE \cf4 (\cf0 vc_TagID\cf4 ,\cf0  vc_UserID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  FK1_vc_UserTagList \cf3 FOREIGN\cf0  \cf3 KEY\cf4 (\cf0 vc_TagID\cf4 )\cf0  \cf3 REFERENCES\cf0  vc_Tag\cf4 (\cf0 vc_TagID\cf4 ),\cf0 \
+	\cf3 CONSTRAINT\cf0  FK2_vc_UserTagList \cf3 FOREIGN\cf0  \cf3 KEY\cf4 (\cf0 vc_UserID\cf4 )\cf0  \cf3 REFERENCES\cf0  vc_User\cf4 (\cf0 vc_UserID\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf4 )\cf0 \
+\pard\pardeftab720\ri0\partightenfactor0
+\cf2 --End creating User Tag List Table \cf0 \
+\
+\pard\pardeftab720\ri0\sl259\slmult1\sa160\partightenfactor0
+
+\f0\fs22 \cf0 \
+}
